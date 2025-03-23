@@ -8,8 +8,7 @@ CedarScript is a lightweight, interpreted programming language designed for simp
 - Custom syntax with flexible parsing
 - TokenStream-based parser for efficient token handling
 - Supports variable declarations, functions, and expressions
-- Debugging features with logging support
-- Designed for easy expansion and customization
+- Supports Crashing
 
 ## Getting Started
 
