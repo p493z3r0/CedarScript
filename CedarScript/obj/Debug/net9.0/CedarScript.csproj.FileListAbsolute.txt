@@ -1,0 +1,14 @@
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.AssemblyInfoInputs.cache
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.AssemblyInfo.cs
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.csproj.CoreCompileInputs.cache
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\bin\Debug\net9.0\CedarScript.exe
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\bin\Debug\net9.0\CedarScript.deps.json
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\bin\Debug\net9.0\CedarScript.runtimeconfig.json
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\bin\Debug\net9.0\CedarScript.dll
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\bin\Debug\net9.0\CedarScript.pdb
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.dll
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\refint\CedarScript.dll
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.pdb
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\CedarScript.genruntimeconfig.cache
+C:\Users\dominic\RiderProjects\CedarScript\CedarScript\obj\Debug\net9.0\ref\CedarScript.dll
