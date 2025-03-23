@@ -1,5 +1,6 @@
 # CedarScript
 
+(If you stumble across this, I wanterd to create a programming language and this is only for me myself and I. Absolutely do not use this in any way - but you might find inspiration for your projects? In any case the following readme content is gpt generated as im too lazy)
 CedarScript is a lightweight, interpreted programming language designed for simplicity and flexibility. This repository contains the core interpreter, including the tokenizer, parser, and execution engine.
 
 ## Features
