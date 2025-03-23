@@ -33,6 +33,14 @@ public class LiteralExpression : Expression
         };
     }
 
+    public static LiteralExpression FromBoolean(bool boolean)
+    {
+        return new LiteralExpression()
+        {
+            Value = boolean,
+            Type = LiteralType.Boolean,
+        };
+    }
     public static LiteralExpression FromInt(int number)
     {
         return new LiteralExpression()
@@ -61,4 +69,24 @@ public class LiteralExpression : Expression
         throw new NotImplementedException();
     }
 
+    public static Expression FromString(string tokenValue)
+    {
+
+        if (int.TryParse(tokenValue, out int integer))
+        {
+            return FromInt(integer);
+        }
+
+        if (double.TryParse(tokenValue, out double dbl))
+        {
+            return FromDouble(dbl);
+        }
+
+        if (bool.TryParse(tokenValue, out bool boolValue))
+        {
+            return FromBoolean(boolValue);
+        }
+        
+        throw new NotImplementedException("Cant parse the provided type in a literal expression. " + tokenValue);
+    }
 }

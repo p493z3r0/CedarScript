@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CedarScript")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e5ca71362ec9d115f464949df9983bcc4ee8c40")]
 [assembly: System.Reflection.AssemblyProductAttribute("CedarScript")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CedarScript")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

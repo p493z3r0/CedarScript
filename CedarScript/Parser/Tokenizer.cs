@@ -9,6 +9,26 @@ public class Token
 {
     public TokenType Type { get; init; }
     public string Value { get; init; }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is Token token)
+        {
+            return token.Value.Equals(Value) && token.Type == Type;
+        }
+
+        return false;
+    }
+
+    protected bool Equals(Token other)
+    {
+        return Type == other.Type && Value == other.Value;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine((int)Type, Value);
+    }
 }
 public enum TokenType
 {
