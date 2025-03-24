@@ -20,7 +20,7 @@ public class VariableExpression : Expression
 
         if (Path.Any() && declaration.IsObject)
         {
-            return declaration.Object.GetPropertyByPath(Path);
+            return declaration.Object!.GetPropertyByPath(Path);
         }
       
         return declaration.Value ?? ValueNode.FromInt(0);
