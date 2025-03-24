@@ -20,7 +20,7 @@ public class DoubleValueNode : ValueNode
             case LiteralType.String:
                 break;
             case LiteralType.Boolean:
-                break;
+                return other.Add(this);
             case LiteralType.Default:
                 break;
             default:

@@ -20,7 +20,7 @@ public class IntValueNode : ValueNode
             case LiteralType.String:
                 return ValueNode.FromString(AsString() + (string)other.Value);
             case LiteralType.Boolean:
-                break;
+                return other.Add(this);
             case LiteralType.Default:
                 break;
             default:
