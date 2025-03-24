@@ -18,7 +18,7 @@ public class DoubleValueNode : ValueNode
             case LiteralType.Double:
                 return ValueNode.FromDouble((double)Value+ (double)other.Value);
             case LiteralType.String:
-                break;
+                return StringValueNode.FromString((string)Value+ (string)other.Value);
             case LiteralType.Boolean:
                 return other.Add(this);
             case LiteralType.Default:
