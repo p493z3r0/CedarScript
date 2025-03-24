@@ -1,4 +1,6 @@
-﻿namespace CedarScript.AST.Nodes.Value;
+﻿using CedarScript.AST.Expressions;
+
+namespace CedarScript.AST.Nodes.Value;
 
 public class StringValueNode : ValueNode
 {
@@ -9,20 +11,22 @@ public class StringValueNode : ValueNode
 
     public override ValueNode Add(ValueNode other)
     {
-        if (other is StringValueNode stringValueNode)
+        switch (other.Type)
         {
-            return StringValueNode.FromString((string)Value + stringValueNode.Value);
-        }
-
-        if (other is IntValueNode intValueNode)
-        {
-            return StringValueNode.FromString((string)Value + intValueNode.AsString());
+            case LiteralType.Integer:
+                return StringValueNode.FromString((string)Value + other.AsString());
+            case LiteralType.Double:
+                return StringValueNode.FromString((string)Value + other.AsString());
+            case LiteralType.String:
+                return StringValueNode.FromString((string)Value + other.Value);
+            case LiteralType.Boolean:
+                return StringValueNode.FromString((string)Value + other.AsString());
+            case LiteralType.Default:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
         
-        if (other is DoubleValueNode doubleValueNode)
-        {
-            return StringValueNode.FromString((string)Value + doubleValueNode.AsString());
-        }
         
         throw new NotImplementedException("Other is not implemented to add to string");
     }

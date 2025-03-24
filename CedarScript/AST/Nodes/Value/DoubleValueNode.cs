@@ -36,12 +36,12 @@ public class DoubleValueNode : ValueNode
 
     public override int AsInt()
     {
-        throw new NotImplementedException();
+        return (int)Value;
     }
 
     public override bool AsBool()
     {
-        throw new NotImplementedException();
+        return (bool)Value;
     }
 
     public override string AsString()

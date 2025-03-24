@@ -14,7 +14,7 @@ public class IntValueNode : ValueNode
         switch (other.Type)
         {
             case LiteralType.Integer:
-                return ValueNode.FromDouble((int)Value+ (int)other.Value);
+                return ValueNode.FromInt((int)Value+ (int)other.Value);
             case LiteralType.Double:
                 return ValueNode.FromDouble((int)Value+ (double)other.Value);
             case LiteralType.String:

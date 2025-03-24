@@ -1,7 +1,6 @@
 ﻿var test = true;
-var test2 = 12;
 function somefunc(){
-    var val = "153";
+    var val = false;
     return test + val;
 }
 

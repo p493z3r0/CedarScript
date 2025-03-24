@@ -1,4 +1,6 @@
-﻿namespace CedarScript.AST.Nodes.Value;
+﻿using CedarScript.AST.Expressions;
+
+namespace CedarScript.AST.Nodes.Value;
 
 public class BoolValueNode : ValueNode
 {
@@ -9,23 +11,22 @@ public class BoolValueNode : ValueNode
 
     public override ValueNode Add(ValueNode other)
     {
-        if (other is BoolValueNode boolValueNode)
+        switch (other.Type)
         {
-            var ownValue = AsInt();
-            var otherValue = boolValueNode.AsInt();
-            return IntValueNode.FromInt(ownValue + otherValue);
+            case LiteralType.Integer:
+                return IntValueNode.FromInt(AsInt() + other.AsInt());
+            case LiteralType.Double:
+                return IntValueNode.FromInt(AsInt() + other.AsInt());
+            case LiteralType.String:
+                return StringValueNode.FromString(AsString() + other.AsString());
+            case LiteralType.Boolean:
+                return IntValueNode.FromInt(AsInt() + other.AsInt());
+            case LiteralType.Default:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
-        if (other is IntValueNode intValueNode)
-        {
-            return IntValueNode.FromInt(AsInt() + intValueNode.AsInt());
-        }
-
-        if (other is StringValueNode stringValueNode)
-        {
-            return StringValueNode.FromString(AsString() + stringValueNode.AsString());
-        }
-        
         throw new Exception("Add can not be done since other is not a handled value");
     }
 
