@@ -39,13 +39,13 @@ public class Parser
             case TokenType.Identifier:
                 return Expression.FromToken(token, tokenStream);
             case TokenType.Punctuator:
-                return new VariableDeclaration();
+                return new StubNode(token);
             case TokenType.Numeric:
                 return Expression.FromToken(token, tokenStream);
             case TokenType.String:
-                return new VariableDeclaration();
+                return new StubNode(token);
             case TokenType.Unknown:
-                return new VariableDeclaration();
+                return new StubNode(token);
             default:
                 throw new ArgumentOutOfRangeException();
         }

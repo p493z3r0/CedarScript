@@ -22,7 +22,10 @@ public  class ProgramNode
 
             if (node.Body.Any())
             {
-                Populate(node.Body, scope);
+                var subScope = new Scope.Scope();
+                subScope.OuterScope = scope;
+                scope.InnerScope = subScope;
+                Populate(node.Body, subScope);
             }
         }
         return scope;

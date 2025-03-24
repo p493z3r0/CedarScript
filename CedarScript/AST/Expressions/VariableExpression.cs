@@ -9,7 +9,7 @@ public class VariableExpression : Expression
 
     public override ValueNode Execute(Scope.Scope scope)
     {
-        var declaration = scope.VariableDeclarations.FirstOrDefault(s => s.VariableName == Name);
+        var declaration = scope.FindVariableDeclarationByName(Name);
         if(declaration is null) throw new Exception("Cannot find variable named " + Name);
 
         return declaration.Value ?? ValueNode.FromInt(0);

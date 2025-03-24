@@ -10,7 +10,7 @@ public class CallExpression : Expression
     public List<ValueNode> Arguments { get; set; } = new();
     public override ValueNode Execute(Scope scope)
     {
-        var function = scope.FunctionDeclarations.FirstOrDefault(x => x.Name == Name);
+        var function = scope.FindFunctionDeclarationByName(Name);
         if(function == null) throw new Exception($"Function {Name} not defined in current scope");
         return function.Execute(scope);
     }

@@ -1,11 +1,27 @@
 ﻿using System.Runtime.CompilerServices;
 using CedarScript.AST.Expressions;
+using CedarScript.AST.Scope;
 using CedarScript.Parser;
 
 namespace CedarScript.AST.Nodes;
 
 public class BlockNode
 {
+    /// <summary>
+    /// Gets the current or inner scope (if defined)
+    /// </summary>
+    /// <param name="scope">Your current scope</param>
+    /// <param name="type">Sets the type of the innerscope if not null</param>
+    /// <returns></returns>
+    public Scope.Scope GetScope(Scope.Scope scope, ScopeType type = Scope.ScopeType.Global)
+    {
+        if (scope.InnerScope != null)
+        {
+            scope.InnerScope.ScopeType = type;
+            return scope.InnerScope;
+        }
+        return scope;
+    }
     public List<BlockNode> Body { get; set; } = new();
     public virtual bool DoesAutoExecute { get; set; } = true;
 
@@ -17,7 +33,7 @@ public class BlockNode
         {
             if (block.DoesAutoExecute)
             {
-                lastReturn = block.Execute(scope);
+                lastReturn = block.Execute(GetScope(scope));
             }
         }
         return lastReturn;
@@ -40,6 +56,10 @@ public class BlockNode
             var node = Parser.Parser.TokenHandler(consumedToken, tokenStream);
             blockNode.Body.Add(node);
         }
+        
+        blockNode.Body.RemoveAt(blockNode.Body.Count - 1);
+        
+
         
         return blockNode;
     }

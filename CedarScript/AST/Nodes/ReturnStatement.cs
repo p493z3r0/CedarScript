@@ -38,6 +38,7 @@ public class ReturnStatement : BlockNode
         if (parsedNode is Expression expression)
         {
             returnStatement.Argument = expression;
+            Parser.Parser.ConsumeSemicolonIfNeeded(tokenStream);
             return returnStatement;
         }
         
@@ -48,6 +49,6 @@ public class ReturnStatement : BlockNode
     }
     public override ValueNode Execute(Scope.Scope scope)
     {
-        return Argument.Execute(scope);
+        return Argument.Execute(GetScope(scope));
     }
 }

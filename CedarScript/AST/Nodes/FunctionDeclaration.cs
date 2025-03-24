@@ -8,7 +8,6 @@ public class FunctionDeclaration : BlockNode
 {
     public override bool DoesAutoExecute { get; set; } = false;
 
-    public BlockNode Body { get; set; }
     public string Name { get; set; }
     public List<Expression> Arguments { get; set; } = new();
     
@@ -41,7 +40,8 @@ public class FunctionDeclaration : BlockNode
         {
             throw new Exception("function must have a body");
         }
-        functionDeclaration.Body = BlockNode.FromToken(tokenStream.ConsumeNext(), tokenStream);
+
+        functionDeclaration.Body = [BlockNode.FromToken(tokenStream.ConsumeNext(), tokenStream)];
 
         
         return functionDeclaration;
@@ -60,9 +60,15 @@ public class FunctionDeclaration : BlockNode
             Function();
             return ValueNode.FromInt(0);
         }
-        else
+       
+        ValueNode lastReturnValue = ValueNode.FromInt(0);
+
+        foreach (var node in Body)
         {
-            return this.Body.Execute(scope);
+            lastReturnValue = node.Execute(GetScope(scope, ScopeType.Function));
         }
+        
+        return lastReturnValue;
     }
+    
 }
