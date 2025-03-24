@@ -18,7 +18,7 @@ public class IntValueNode : ValueNode
             case LiteralType.Double:
                 return ValueNode.FromDouble((int)Value+ (double)other.Value);
             case LiteralType.String:
-                break;
+                return ValueNode.FromString(AsString() + (string)other.Value);
             case LiteralType.Boolean:
                 break;
             case LiteralType.Default:
@@ -46,6 +46,8 @@ public class IntValueNode : ValueNode
 
     public override string AsString()
     {
-        throw new NotImplementedException();
+        var stringified = Value.ToString();
+        if (stringified == null) return "null";
+        return stringified;
     }
 }

@@ -55,7 +55,7 @@ public static class Tokenizer
 {
     public static HashSet<char> punctuators = new()
     {
-        '.', ',', '+', '"', '[', ']', '{', '}', '(', ')', '*', '`', '^', '\'', '!', '?', ';', ':', '/', '\\', '='
+        '.', ',', '+', '[', ']', '{', '}', '(', ')', '*', '`', '^', '\'', '!', '?', ';', ':', '/', '\\', '='
     };
     public static string[] Keywords = {
         "abstract", "as", "base", "bool", "break", "byte", "case", "catch",
@@ -155,18 +155,5 @@ public static class Tokenizer
         }
 
         return tokens.GetTokens();
-    }
-
-    public static bool ValidateTokens(List<Token> tokens)
-    {
-        Token? lastToken = null;
-        foreach (var token in tokens)
-        {
-            if (token.Type == TokenType.Identifier && lastToken?.Type == TokenType.Identifier)
-                throw new SyntaxErrorException("Expected punctuator not identifier");
-            lastToken = token;
-        }
-
-        return true;
     }
  }

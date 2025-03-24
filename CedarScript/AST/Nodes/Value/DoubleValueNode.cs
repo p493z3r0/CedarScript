@@ -46,6 +46,8 @@ public class DoubleValueNode : ValueNode
 
     public override string AsString()
     {
-        throw new NotImplementedException();
+        var retString = Value.ToString();
+        if (retString == null) return "null";
+        return retString;
     }
 }

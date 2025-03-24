@@ -35,10 +35,9 @@ public class VariableDeclaration : BlockNode
         }
 
         var value = stream.ConsumeNext(1);
+
         
-        Debug.Assert(value.Type == TokenType.Numeric);
-        
-        variableDeclaration.Value = ValueNode.FromInt(int.Parse(value.Value));
+        variableDeclaration.Value = ValueNode.FromValue(value.Value);
         Parser.Parser.ConsumeSemicolonIfNeeded(stream);
         return variableDeclaration;
     }

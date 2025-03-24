@@ -1,7 +1,7 @@
-﻿var test = 10;
+﻿var test = true;
 var test2 = 12;
 function somefunc(){
-    var val = 153;
+    var val = "153";
     return test + val;
 }
 
