@@ -1,6 +1,6 @@
-﻿var test = true;
+﻿var test = 1.25;
 function somefunc(){
-    var val = false;
+    var val = "test";
     return test + val;
 }
 

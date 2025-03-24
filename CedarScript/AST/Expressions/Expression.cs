@@ -17,6 +17,12 @@ public abstract class Expression : BlockNode
         {
             return CallExpression.FromToken(token, tokenStream);
         }
+
+        if (token.Type == TokenType.Numeric &&  tokenStream.Peek().Value.Equals(".") && tokenStream.Peek(1).Type == TokenType.Numeric)
+        {
+            var doubleAsString = $"${token.Value}{tokenStream.ConsumeNext()}{tokenStream.ConsumeNext()}";
+            return LiteralExpression.FromString(doubleAsString);
+        }
         return LiteralExpression.FromString(token.Value);
     }
 }
