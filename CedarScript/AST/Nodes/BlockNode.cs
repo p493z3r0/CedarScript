@@ -43,11 +43,7 @@ public class BlockNode
     public static BlockNode FromToken(Token token, TokenStream tokenStream)
     {
         var blockNode = new BlockNode();
-        var tokenIndex = tokenStream.Match(new Token()
-        {
-            Type = TokenType.Punctuator,
-            Value = "}"
-        });
+        var tokenIndex = tokenStream.GetNextScopeClosureTokenIndex();
         if(tokenIndex < 0) throw new ArgumentException("Block scope is missing closure");
 
         while (tokenStream.IsTokenAvailableWithMaxIndex(tokenIndex))
@@ -56,10 +52,6 @@ public class BlockNode
             var node = Parser.Parser.TokenHandler(consumedToken, tokenStream);
             blockNode.Body.Add(node);
         }
-        
-        blockNode.Body.RemoveAt(blockNode.Body.Count - 1);
-        
-
         
         return blockNode;
     }

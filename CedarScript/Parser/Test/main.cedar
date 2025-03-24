@@ -1,8 +1,10 @@
-﻿var test = 1.25;
-function somefunc(){
+﻿function somefunc(){
     var val = "test";
-    var test2 = val;
-    return test2;
+    var test2 = {
+        property1: 1,
+        property2: 2
+    }
+    return val;
 }
 
 somefunc();

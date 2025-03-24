@@ -75,11 +75,35 @@ public class TokenStream
         return _index + offset < _tokens.Count;
     }
 
+    public int GetNextScopeClosureTokenIndex(int baseIndex = -1)
+    {
+        if (baseIndex == -1) baseIndex = _index;
+
+        int openingScopesFound = 0;
+        int closingScopeIndex = baseIndex;
+        for (int i = baseIndex; i < _tokens.Count; i++)
+        {
+            if (_tokens[i].Value.Equals("}"))
+            {
+                if(openingScopesFound == 0) return i;
+                openingScopesFound--;
+                continue;
+            }
+
+            if (_tokens[i].Value.Equals("{"))
+            {
+                openingScopesFound++;
+            }
+        }
+
+        return _tokens.Count - 1;
+    }
+
     public bool IsTokenAvailableWithMaxIndex(int maxIndex)
     {
         if (IsTokenAvailable())
         {
-            return _index <= maxIndex;
+            return _index < maxIndex;
         }
 
         return false;

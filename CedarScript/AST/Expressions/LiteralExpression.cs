@@ -9,6 +9,8 @@ public enum LiteralType
     Double,
     String,
     Boolean,
+    Undefined,
+    Null,
     Default,
 }
 public class LiteralExpression : Expression

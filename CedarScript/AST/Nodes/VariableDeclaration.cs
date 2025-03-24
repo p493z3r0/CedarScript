@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using CedarScript.AST.Nodes.Value;
+using CedarScript.AST.Nodes.Value.Object;
 using CedarScript.Parser;
 
 namespace CedarScript.AST.Nodes;
@@ -13,6 +15,10 @@ public class VariableDeclaration : BlockNode
     public bool IsReadOnly { get; set; }
     public bool IsNullable { get; set; }
     public bool IsReference { get; set; } = false;
+    
+    public bool IsObject { get; set; } = false;
+    
+    public CsObject? Object { get; set; } = null;
 
     public new static VariableDeclaration FromToken(Token token, TokenStream stream)
     {
@@ -31,6 +37,7 @@ public class VariableDeclaration : BlockNode
         if (!stream.Peek().Value.Equals("="))
         {
             variableDeclaration.IsNullable = true;
+            variableDeclaration.Value = UndefinedValueNode.Create();
             Parser.Parser.ConsumeSemicolonIfNeeded(stream);
             return variableDeclaration;
         }
@@ -41,7 +48,17 @@ public class VariableDeclaration : BlockNode
         {
             variableDeclaration.IsReference = true;
         }
-        
+
+        if (value.Value == "{")
+        {
+            // object declaration
+            
+            var csObject = CsObject.FromToken(value, stream);
+            variableDeclaration.IsObject = true;
+            variableDeclaration.Object = csObject;
+            return variableDeclaration;
+            
+        }
         variableDeclaration.Value = ValueNode.FromValue(value.Value);
         Parser.Parser.ConsumeSemicolonIfNeeded(stream);
         return variableDeclaration;
