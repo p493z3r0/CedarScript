@@ -2,9 +2,9 @@
     var val = "test";
     var test2 = {
         property1: 1,
-        property2: 2
+        property2: 69420
     }
-    return val;
+    return test2.property2;
 }
 
 somefunc();

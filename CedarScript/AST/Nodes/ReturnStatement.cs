@@ -43,9 +43,6 @@ public class ReturnStatement : BlockNode
         }
         
         throw new InvalidOperationException("Return argument invalid");
-        
-        
-        return new ReturnStatement();
     }
     public override ValueNode Execute(Scope.Scope scope)
     {

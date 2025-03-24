@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
 using CedarScript.AST.Globals;
 using CedarScript.AST.Interpreter;
 using CedarScript.Parser;
@@ -24,8 +25,14 @@ class Program
         }
         var parser = new Parser();
         var originalText = "\"function main() { return 35 + test; } var test = 12; main()\"";
+        
+ 
+
         var ast = parser.ParseProgram(programText);
+
         var interpreter = new Interpreter();
+
         interpreter.Execute(ast);
+
     }
 }

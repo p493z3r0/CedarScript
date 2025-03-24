@@ -57,4 +57,9 @@ public class CsObject
 
         return csObject;
     }
+
+    public ValueNode GetPropertyByPath(List<string> path)
+    {
+        return GetProperty(path.First());
+    }
 }
