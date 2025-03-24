@@ -12,6 +12,7 @@ public class VariableDeclaration : BlockNode
     public bool IsConstant { get; set; }
     public bool IsReadOnly { get; set; }
     public bool IsNullable { get; set; }
+    public bool IsReference { get; set; } = false;
 
     public new static VariableDeclaration FromToken(Token token, TokenStream stream)
     {
@@ -36,6 +37,10 @@ public class VariableDeclaration : BlockNode
 
         var value = stream.ConsumeNext(1);
 
+        if (value.Type == TokenType.Identifier)
+        {
+            variableDeclaration.IsReference = true;
+        }
         
         variableDeclaration.Value = ValueNode.FromValue(value.Value);
         Parser.Parser.ConsumeSemicolonIfNeeded(stream);
@@ -43,6 +48,15 @@ public class VariableDeclaration : BlockNode
     }
     public override ValueNode Execute(Scope.Scope scope)
     {
-        throw new NotImplementedException("Variable Declaration can not be executed, tried executing " + VariableName);
+        if (!IsReference) throw new Exception("Variable declaration can only be executed if its a reference");
+        if(Value == null) throw new NullReferenceException("Variable " + VariableName + " cannot be null on execution");
+        var declaration = scope.FindVariableDeclarationByName(Value.AsString());
+        if(declaration == null) throw new NullReferenceException("Variable " + VariableName + " has an unresolved reference with value " + Value.AsString());
+        if (declaration.IsReference)
+        {
+            return declaration.Execute(scope);
+        }
+
+        return declaration.Value ?? ValueNode.FromInt(0);
     }
 }

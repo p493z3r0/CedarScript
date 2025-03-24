@@ -12,6 +12,11 @@ public class VariableExpression : Expression
         var declaration = scope.FindVariableDeclarationByName(Name);
         if(declaration is null) throw new Exception("Cannot find variable named " + Name);
 
+        if (declaration.IsReference)
+        {
+            return declaration.Execute(scope);
+        }
+      
         return declaration.Value ?? ValueNode.FromInt(0);
     }
 
@@ -24,4 +29,5 @@ public class VariableExpression : Expression
         };
         return variableExpression;
     }
+
 }

@@ -51,27 +51,17 @@ public  class ProgramNode
             
         });
         
-        if (Settings.IsDebugEnabled)
-        {
-            Console.WriteLine("Scope has " + scope.FunctionDeclarations.Count + " function declarations.");
-            Console.WriteLine("Scope has " + scope.VariableDeclarations.Count + " variable declarations.");
-
-        }
-
-        if (Settings.IsDebugEnabled)
-        {
-            Console.WriteLine("Starting execution.");
-        }
+  
         ValueNode lastReturn = ValueNode.FromInt(0);
         foreach (var node in Nodes)
         {
             if (node.DoesAutoExecute)
             {
-                Console.WriteLine("Executing node ");
                 lastReturn = node.Execute(scope);
             }
         }
         
+        Console.Write("> ");
         lastReturn.PrintValue();
     }
 }

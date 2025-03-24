@@ -23,6 +23,11 @@ public abstract class Expression : BlockNode
             var doubleAsString = $"{token.Value}{tokenStream.ConsumeNext()}{tokenStream.ConsumeNext()}";
             return LiteralExpression.FromString(doubleAsString);
         }
+
+        if (token.Type == TokenType.Identifier)
+        {
+            return VariableExpression.FromToken(token, tokenStream);
+        }
         return LiteralExpression.FromString(token.Value);
     }
 }

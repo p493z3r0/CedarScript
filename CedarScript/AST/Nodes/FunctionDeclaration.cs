@@ -49,11 +49,7 @@ public class FunctionDeclaration : BlockNode
 
     public override ValueNode Execute(Scope.Scope scope)
     {
-        if (Globals.Settings.IsDebugEnabled)
-        {
-            Console.WriteLine("Executing function " + Name);
-        }
-
+       
         if (Function != null)
         {
             // appears to be an internal impl.
