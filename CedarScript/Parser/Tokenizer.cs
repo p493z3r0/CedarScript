@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Data;
 using System.Runtime.InteropServices.JavaScript;
+using System.Text;
 using CedarScript.Parser.Extensions;
 
 namespace CedarScript.Parser;
@@ -71,18 +72,18 @@ public static class Tokenizer
         "unchecked", "unsafe", "ushort", "using", "virtual", "void",
         "volatile", "while", "function", "var"
     };
-    private static bool IsPunctuator(string input)
+    private static bool IsPunctuator(ReadOnlySpan<char> input)
     {
-        if (string.IsNullOrEmpty(input))
+        if (input.IsEmpty)
             return false;
 
         if (input.Length > 1) return false;
         
         return punctuators.Contains(input[0]);
     }
-    public static bool IsNumber(string input)
+    public static bool IsNumber(ReadOnlySpan<char> input)
     {
-        if (string.IsNullOrWhiteSpace(input))
+        if (input.IsEmpty)
             return false;
 
         return int.TryParse(input, out _) ||
@@ -91,9 +92,9 @@ public static class Tokenizer
                double.TryParse(input, out _);
     }
     
-    private static  bool IsValidIdentifier(string identifier)
+    private static  bool IsValidIdentifier(ReadOnlySpan<char> identifier)
     {
-        if (string.IsNullOrEmpty(identifier))
+        if (identifier.IsEmpty)
             return false;
 
         if (!(char.IsLetter(identifier[0]) || identifier[0] == '_'))
@@ -115,22 +116,31 @@ public static class Tokenizer
 
         return true;
     }
-    private static TokenType TokenTypeFromValue(string value, TokenType previousType)
+    private static TokenType TokenTypeFromValue(ReadOnlySpan<char> value, TokenType previousType)
     {
-        if(Keywords.Contains(value)) return TokenType.Keyword;
+        if(Keywords.AsSpan().Contains(value.ToString())) return TokenType.Keyword;
         if(IsPunctuator(value)) return TokenType.Punctuator;
         if(IsNumber(value)) return TokenType.Numeric;
         if (IsValidIdentifier(value)) return TokenType.Identifier;
         return TokenType.String;
     }
-    public static List<Token> Tokenize(string text)
+
+    private static bool IsValueUncompletedString(ReadOnlySpan<char> value)
+    {
+        // if value has an uncompleted opening " it is yes. That means Count " % 2 > 0. Used span for performance reason. we save whereever we can, right?
+        int count = 0;
+        foreach (char c in value)
+            if (c == '"') count++;
+        return count % 2 > 0;
+    }
+    public static List<Token> Tokenize(ReadOnlySpan<char> text)
     {
         var tokens = new Tokens();
         var currentValue = "";
 
         foreach (var character in text)
         {
-            if (character.IsSeperator())
+            if (!IsValueUncompletedString(currentValue + character) && character.IsSeperator())
             {
                 if (!string.IsNullOrEmpty(currentValue))
                 {

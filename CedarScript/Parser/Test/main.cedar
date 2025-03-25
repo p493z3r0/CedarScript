@@ -2,7 +2,7 @@
     var val = "test";
     var test2 = {
         property1: 1,
-        property2: "your_mom"
+        property2: "your mom"
     }
     return test2.property2;
 }
