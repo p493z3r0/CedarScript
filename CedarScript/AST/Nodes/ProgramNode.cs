@@ -46,7 +46,6 @@ public  class ProgramNode
             Function = () =>
             {
               Console.ForegroundColor = ConsoleColor.DarkYellow;  
-              Console.WriteLine("internal_function is running, from here we can provide system apis etc..");  
             }
             
         });

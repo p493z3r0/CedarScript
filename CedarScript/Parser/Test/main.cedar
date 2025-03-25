@@ -2,8 +2,9 @@
     var val = "test";
     var test2 = {
         property1: 1,
-        property2: 69420
+        property2: "your_mom"
     }
     return test2.property2;
 }
+set_background_color()
 somefunc();
