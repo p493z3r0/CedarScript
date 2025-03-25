@@ -56,7 +56,7 @@ public static class Tokenizer
 {
     public static HashSet<char> punctuators = new()
     {
-        '.', ',', '+', '[', ']', '{', '}', '(', ')', '*', '`', '^', '\'', '!', '?', ';', ':', '/', '\\', '='
+        '.', ',', '+', '[', ']', '{', '}', '(', ')', '*', '`', '^', '\'', '!', '?', ';', ':', '/', '\\', '=', '%'
     };
     public static string[] Keywords = {
         "abstract", "as", "base", "bool", "break", "byte", "case", "catch",

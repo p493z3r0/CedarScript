@@ -50,4 +50,8 @@ public class DoubleValueNode : ValueNode
         if (retString == null) return "null";
         return retString;
     }
+    public override ValueNode Math(ValueNode right, Operation operation)
+    {
+        return ValueNode.NummericalMath(this, right, operation);
+    }
 }

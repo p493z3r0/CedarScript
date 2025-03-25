@@ -65,6 +65,21 @@ public class TokenStream
 
         return -1;
     }
+
+    /// <summary>
+    /// This will return the relative index of a token specified ahead in the index
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public int MatchRelative(Token token)
+    {
+        for (int i = _index; i < _tokens.Count; i++)
+        {
+            if(_tokens[i].Equals(token)) return i - _index;
+        }
+
+        return -1;
+    }
     /// <summary>
     /// Checks if a next token is available. Offset will look into the next tokens
     /// </summary>

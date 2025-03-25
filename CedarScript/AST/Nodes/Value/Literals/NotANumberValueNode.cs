@@ -1,4 +1,6 @@
-﻿namespace CedarScript.AST.Nodes.Value;
+﻿using CedarScript.AST.Expressions;
+
+namespace CedarScript.AST.Nodes.Value;
 
 public class NotANumberValueNode : ValueNode
 {
@@ -37,5 +39,9 @@ public class NotANumberValueNode : ValueNode
     public override string AsString()
     {
         throw new NotImplementedException();
+    }
+    public override ValueNode Math(ValueNode right, Operation operation)
+    {
+        return ValueNode.NummericalMath(this, right, operation);
     }
 }

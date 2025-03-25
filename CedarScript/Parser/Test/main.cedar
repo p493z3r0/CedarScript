@@ -4,7 +4,8 @@
         property1: 1,
         property2: "your mom"
     }
-    return test2.property2;
+    return 10;
 }
+
 set_background_color()
 somefunc();

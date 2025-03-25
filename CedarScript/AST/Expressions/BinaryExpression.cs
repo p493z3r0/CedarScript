@@ -46,7 +46,12 @@ public class BinaryExpression : Expression
         var left = Left.Execute(scope);
         var right = Right.Execute(scope);
 
-        return left.Add(right);
+        if (Operation == Operation.Plus)
+        {
+            return left.Add(right);
+        }
+
+        return left.Math(right, Operation);
     }
 
     public new static BinaryExpression FromToken(Token token, TokenStream tokenStream)

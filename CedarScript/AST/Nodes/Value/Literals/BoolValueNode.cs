@@ -49,4 +49,8 @@ public class BoolValueNode : ValueNode
     {
         return (bool)Value ? "true" : "false";
     }
+    public override ValueNode Math(ValueNode right, Operation operation)
+    {
+        return ValueNode.NummericalMath(this, right, operation);
+    }
 }

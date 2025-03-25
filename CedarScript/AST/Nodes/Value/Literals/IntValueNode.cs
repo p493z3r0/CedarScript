@@ -50,4 +50,9 @@ public class IntValueNode : ValueNode
         if (stringified == null) return "null";
         return stringified;
     }
+
+    public override ValueNode Math(ValueNode right, Operation operation)
+    {
+        return ValueNode.NummericalMath(this, right, operation);
+    }
 }

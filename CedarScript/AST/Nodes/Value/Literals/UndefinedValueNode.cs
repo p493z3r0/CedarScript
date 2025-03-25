@@ -55,4 +55,8 @@ public class UndefinedValueNode : ValueNode
             Value = 0,
         };
     }
+    public override ValueNode Math(ValueNode right, Operation operation)
+    {
+        return ValueNode.NummericalMath(this, right, operation);
+    }
 }

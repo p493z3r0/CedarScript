@@ -50,4 +50,8 @@ public class StringValueNode : ValueNode
     {
         return (string)Value;
     }
+    public override ValueNode Math(ValueNode right, Operation operation)
+    {
+        return ValueNode.NummericalMath(this, right, operation);
+    }
 }
