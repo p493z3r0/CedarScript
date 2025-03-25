@@ -6,5 +6,4 @@
     }
     return test2.property2;
 }
-
 somefunc();

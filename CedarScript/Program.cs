@@ -1,11 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Diagnostics;
 using CedarScript.AST.Globals;
 using CedarScript.AST.Interpreter;
-using CedarScript.Parser;
 
-class Program
+namespace CedarScript;
+
+static class Program
 {
     public static void Main(string[] args)
     {
@@ -23,10 +23,7 @@ class Program
             }else throw new FileNotFoundException(args[0]);
             
         }
-        var parser = new Parser();
-        var originalText = "\"function main() { return 35 + test; } var test = 12; main()\"";
-        
- 
+        var parser = new Parser.Parser();
 
         var ast = parser.ParseProgram(programText);
 
