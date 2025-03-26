@@ -1,4 +1,6 @@
-﻿using CedarScript.AST.Globals;
+﻿using CedarScript.AST.Expressions;
+using CedarScript.AST.Globals;
+using Expression = System.Linq.Expressions.Expression;
 
 namespace CedarScript.AST.Nodes;
 
@@ -43,7 +45,7 @@ public  class ProgramNode
             Name = "set_background_color",
             DoesAutoExecute = false,
             Arguments = [],
-            Function = () =>
+            Function = (args) =>
             {
               Console.ForegroundColor = ConsoleColor.DarkYellow;  
             }

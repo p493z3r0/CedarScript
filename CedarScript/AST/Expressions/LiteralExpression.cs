@@ -60,9 +60,9 @@ public class LiteralExpression : Expression
             case LiteralType.Double:
                 return ValueNode.FromDouble((int)Value);
             case LiteralType.String:
-                break;
+                return ValueNode.FromString((string)Value); ;
             case LiteralType.Boolean:
-                break;
+                return ValueNode.FromBool((bool)Value);
             case LiteralType.Default:
                 break;
             default:
@@ -88,7 +88,12 @@ public class LiteralExpression : Expression
         {
             return FromBoolean(boolValue);
         }
+
+        return new LiteralExpression()
+        {
+            Type = LiteralType.String,
+            Value = tokenValue,
+        };
         
-        throw new NotImplementedException("Cant parse the provided type in a literal expression. " + tokenValue);
     }
 }

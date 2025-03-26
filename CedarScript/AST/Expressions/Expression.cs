@@ -31,7 +31,7 @@ public abstract class Expression : BlockNode
         }
     
 
-        if (tokenStream.Peek().Value == "(" && tokenStream.Peek(1).Value == ")")
+        if (tokenStream.Peek().Value == "(")
         {
             return CallExpression.FromToken(token, tokenStream);
         }

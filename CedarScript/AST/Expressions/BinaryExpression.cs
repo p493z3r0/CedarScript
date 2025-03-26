@@ -56,10 +56,6 @@ public class BinaryExpression : Expression
 
     public new static BinaryExpression FromToken(Token token, TokenStream tokenStream)
     {
-        Console.WriteLine("Parsing binary expression");
-
-        // token is the left value
-
         Expression? left = null;
         if (token.Type == TokenType.Identifier)
         {
